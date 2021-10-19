@@ -64,10 +64,11 @@ install_python () {
     ./configure --enable-optimizations --prefix=/usr < /dev/null
     make < /dev/null
     echo $("Install the new Python version " $new_version)
-    sudo make altinstall < /dev/null
+    sudo checkinstall -y  < /dev/null
 
     echo "Let's cleanup!"
     cd ..
+    mv ${Python-$new_version}/*.deb .
     sudo rm -r ${Python-$new_version}
     rm -rf ${file}
 
