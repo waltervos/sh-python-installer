@@ -45,32 +45,32 @@ install_python () {
     echo "Your current Python version is: ${old_version}"
 
     echo "Updating system"
-    apt -qq update < /dev/null
+    apt-get --yes update
 
     echo "Installing system essentials"
-    apt -qq install wget build-essential checkinstall < /dev/null
+    apt-get --yes install wget build-essential checkinstall
 
     echo "Installing Python essentials"
-    apt -qq install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev < /dev/null
+    apt-get --yes install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
 
     echo "Downloading Python ${new_version}"
     wget ${url}
     echo "Decompressing file"
-    tar -Jxf ${file} < /dev/null
+    tar -Jxf ${file}
 
     cd Python-${new_version}
 
     echo "Prepare the source for the installation"
-    ./configure --enable-optimizations --prefix=/usr < /dev/null
-    make < /dev/null
+    ./configure --enable-optimizations --prefix=/usr
+    make
     echo $("Install the new Python version " $new_version)
-    sudo checkinstall -y  < /dev/null
+    sudo checkinstall -y  <
 
-    echo "Let's cleanup!"
+#     echo "Let's cleanup!"
     cd ..
     mv ${Python-$new_version}/*.deb .
-    sudo rm -r ${Python-$new_version}
-    rm -rf ${file}
+#     sudo rm -r ${Python-$new_version}
+#     rm -rf ${file}
 
     new_python_version=$(python -c 'import platform; print(platform.python_version())')
     if [ $old_python_version = $new_version ]; then
@@ -81,7 +81,7 @@ install_python () {
     fi
 
     echo "Let's install PIP"
-    apt -qq install python3-pip < /dev/null
+    apt-get --yes install python3-pip
 
     echo "All Done!"
     echo "Your new Python version should be ${new_version}"
