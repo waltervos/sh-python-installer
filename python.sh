@@ -83,7 +83,6 @@ install_python () {
     echo "Let's install PIP"
     apt -qq install python3-pip < /dev/null
 
-    clear
     echo "All Done!"
     echo "Your new Python version should be ${new_version}"
     echo "You can check this yourself by 'python --version'"
