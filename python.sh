@@ -64,7 +64,7 @@ install_python () {
     ./configure --enable-optimizations --prefix=/usr
     make
     echo $("Install the new Python version " $new_version)
-    sudo checkinstall -y  <
+    sudo checkinstall -y
 
 #     echo "Let's cleanup!"
     cd ..
